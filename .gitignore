@@ -50,3 +50,10 @@ mkinstalldirs
 tags
 test-driver
 scripts/_curl
+
+.buckd
+.buckconfig.d
+.buckconfig.local
+buckaroo_macros.bzl
+buck-out
+buckaroo
