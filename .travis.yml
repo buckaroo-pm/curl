@@ -29,4 +29,4 @@ before_install:
 
 script:
   - ./bin/buckaroo install
-  - ./bin/buck build -c ui.superconsole=DISABLED //:predef
+  - ./bin/buck build -c ui.superconsole=DISABLED //:curl
