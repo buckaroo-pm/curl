@@ -1,4 +1,12 @@
-manifest = "fe247766579c308370cd78e9a1d06c631d3e7ac706505b78b4320673418cd839"
+manifest = "8bf9ae2286164020a68ba34d9e9b67b4449b075fd3271d80e0afe45149bbdbe1"
+
+[[dependency]]
+package = "github.com/buckaroo-pm/host-core-foundation"
+target = "//:core-foundation"
+
+[[dependency]]
+package = "github.com/buckaroo-pm/host-security"
+target = "//:security"
 
 [[dependency]]
 package = "github.com/buckaroo-pm/madler-zlib"
@@ -7,6 +15,14 @@ target = "//:zlib"
 [[dependency]]
 package = "github.com/buckaroo-pm/openssl"
 target = "//:openssl"
+
+[lock."github.com/buckaroo-pm/host-core-foundation"]
+versions = [ "branch=master" ]
+revision = "fd7081ffe1244afb86c41c2d41d3603f851feae8"
+
+[lock."github.com/buckaroo-pm/host-security"]
+versions = [ "branch=master" ]
+revision = "f7aba7ed43bd385648cb550128ce69800172343c"
 
 [lock."github.com/buckaroo-pm/madler-zlib"]
 versions = [ "1.2.11" ]

@@ -1,5 +1,5 @@
 load('//:subdir_glob.bzl', 'subdir_glob')
-load('//:buckaroo_macros.bzl', 'buckaroo_deps')
+load('//:buckaroo_macros.bzl', 'buckaroo_deps_from_package')
 
 prebuilt_cxx_library(
   name = 'rt',
@@ -60,7 +60,7 @@ windows_flags = [
   '/DCURL_DISABLE_NTLM',
   '/DHAVE_LIBZ',
   '/DHAVE_ZLIB_H',
-  # '/DUSE_SSLEAY',
+  '/DUSE_SSLEAY',
   # '/DUSE_OPENSSL',
   '/DCURL_STATICLIB',
   '/DCURL_DISABLE_LDAP', 
@@ -92,6 +92,14 @@ macos_srcs = [
 ios_srcs = [
   'lib/vtls/darwinssl.c',
 ]
+
+deps = \
+  buckaroo_deps_from_package('github.com/buckaroo-pm/madler-zlib') + \
+  buckaroo_deps_from_package('github.com/buckaroo-pm/openssl') 
+
+macos_deps = \
+  buckaroo_deps_from_package('github.com/buckaroo-pm/host-core-foundation') + \
+  buckaroo_deps_from_package('github.com/buckaroo-pm/host-security') 
 
 cxx_library(
   name = 'curl',
@@ -303,10 +311,11 @@ cxx_library(
   visibility = [
     'PUBLIC',
   ],
-  deps = buckaroo_deps(),
+  deps = deps,
   platform_deps = [
     ('linux.*', [ ':rt', ':dl' ]),
     ('windows.*', [ ':ws2-32' ]),
+    ('macos.*', macos_deps),
   ],
     # deps = [
     #     "@zlib_archive//:zlib",
