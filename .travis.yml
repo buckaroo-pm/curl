@@ -1,3 +1,5 @@
+     
+
 language: cpp
 sudo: true
 dist: trusty
@@ -13,6 +15,7 @@ addons:
 os:
   - linux
   - osx
+  - windows
 
 env:
   - BUCKAROO_VERSION=v2.2.0
@@ -30,3 +33,4 @@ before_install:
 script:
   - ./bin/buckaroo install
   - ./bin/buck build -c ui.superconsole=DISABLED //:curl
+  - ./bin/buck run -c ui.superconsole=DISABLED //:curl-bin -- --version
